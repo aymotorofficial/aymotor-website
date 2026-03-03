@@ -11,7 +11,7 @@
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:#f5f6f8;
+  background:#f3f4f6;
   color:#222;
 }
 
@@ -24,13 +24,11 @@ header{
 
 header h1{
   margin:0;
-  font-size:42px;
-  letter-spacing:2px;
+  font-size:40px;
 }
 
 header p{
   opacity:0.8;
-  margin-top:10px;
 }
 
 .section{
@@ -41,8 +39,27 @@ header p{
 
 .section h2{
   text-align:center;
+  margin-bottom:30px;
+}
+
+.filter-buttons{
+  text-align:center;
   margin-bottom:40px;
-  font-size:32px;
+}
+
+.filter-buttons button{
+  padding:10px 18px;
+  margin:5px;
+  border:none;
+  border-radius:8px;
+  background:#111827;
+  color:white;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.filter-buttons button:hover{
+  background:#2563eb;
 }
 
 .grid{
@@ -53,9 +70,9 @@ header p{
 
 .card{
   background:white;
-  border-radius:18px;
+  border-radius:15px;
   overflow:hidden;
-  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
   transition:0.3s;
 }
 
@@ -73,52 +90,28 @@ header p{
   padding:20px;
 }
 
-.card h3{
-  margin:0 0 10px;
-}
-
 .price{
-  font-size:20px;
   font-weight:600;
   color:#2563eb;
-  margin-bottom:15px;
+  margin:10px 0;
 }
 
 .btn{
   display:inline-block;
-  padding:12px 18px;
+  padding:10px 15px;
   background:#16a34a;
   color:white;
   text-decoration:none;
-  border-radius:10px;
+  border-radius:8px;
   font-weight:600;
-}
-
-.why{
-  background:white;
-  padding:50px 20px;
-  border-radius:18px;
-  box-shadow:0 8px 25px rgba(0,0,0,0.05);
-}
-
-.why ul{
-  list-style:none;
-  padding:0;
-  max-width:600px;
-  margin:auto;
-}
-
-.why li{
-  margin:15px 0;
-  font-size:18px;
 }
 
 footer{
   text-align:center;
   padding:30px;
-  margin-top:40px;
   background:#111827;
   color:white;
+  margin-top:50px;
 }
 </style>
 </head>
@@ -131,21 +124,38 @@ footer{
 </header>
 
 <section class="section">
-<h2>Stok Kereta Terkini</h2>
+<h2>Stok Kereta</h2>
+
+<div class="filter-buttons">
+<button onclick="filterCars('all')">Semua</button>
+<button onclick="filterCars('sambung')">Sambung Bayar</button>
+<button onclick="filterCars('kedai')">Loan Kedai</button>
+<button onclick="filterCars('bank')">Bank Loan</button>
+<button onclick="filterCars('finance')">Finance</button>
+</div>
 
 <div class="grid">
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6">
+<div class="card sambung">
+<img src="https://images.unsplash.com/photo-1550355291-bbee04a92027">
 <div class="card-content">
-<h3>TOYOTA VELLFIRE 2018</h3>
-<div class="price">RM 98,000</div>
+<h3>PERODUA MYVI 2019</h3>
+<div class="price">Sambung RM 850 / Bulan</div>
 <a href="https://wa.me/60179173381" class="btn">Tanya WhatsApp</a>
 </div>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1550355291-bbee04a92027">
+<div class="card kedai">
+<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
+<div class="card-content">
+<h3>TOYOTA VIOS 2018</h3>
+<div class="price">Deposit Rendah</div>
+<a href="https://wa.me/60179173381" class="btn">Tanya WhatsApp</a>
+</div>
+</div>
+
+<div class="card bank">
+<img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6">
 <div class="card-content">
 <h3>HONDA CIVIC 2019</h3>
 <div class="price">RM 75,000</div>
@@ -153,24 +163,36 @@ footer{
 </div>
 </div>
 
+<div class="card finance">
+<img src="https://images.unsplash.com/photo-1549924231-f129b911e442">
+<div class="card-content">
+<h3>NISSAN NAVARA 2021</h3>
+<div class="price">Full Loan Available</div>
+<a href="https://wa.me/60179173381" class="btn">Tanya WhatsApp</a>
 </div>
-</section>
+</div>
 
-<section class="section">
-<div class="why">
-<h2>Kenapa Pilih AY Motor?</h2>
-<ul>
-<li>✔ Kereta berkualiti & diperiksa</li>
-<li>✔ Proses loan cepat</li>
-<li>✔ Trade-in diterima</li>
-<li>✔ Harga kompetitif</li>
-</ul>
 </div>
 </section>
 
 <footer>
 © 2025 AY Motor. All Rights Reserved.
 </footer>
+
+<script>
+function filterCars(category) {
+  let cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    if(category === 'all'){
+      card.style.display = 'block';
+    } else if(card.classList.contains(category)){
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
 
 </body>
 </html>
