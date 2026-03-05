@@ -569,7 +569,9 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
 
 <script>
 const WA = "60179173381";
-const KEY = "aymotor_cars";
+const BIN_ID = "69a93a9d43b1c97be9b57a1c";
+const MASTER_KEY = "$2a$10$JAq2qkOxZGDOReiO85.u.eOwbgWejyHd.pSQsUFev2MkNfOqMFtY6";
+const API = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 // SHA-256 hash of "Aymotor@179" — password asal tidak disimpan dalam kod
 const ADMIN_HASH = "48f660a712fc49adf737cf210151a6a4c2ab2f2662c042e4a417058779d8df64";
 let cars = [], nextId = 1, activeType = 'all', activeBrand = 'all';
@@ -595,10 +597,24 @@ async function submitPw() {
 function closePwModal() { document.getElementById('pwModal').classList.remove('open'); document.body.style.overflow=''; }
 function closePwBg(e) { if(e.target===document.getElementById('pwModal')) closePwModal(); }
 
-function load() {
-  try { const d = JSON.parse(localStorage.getItem(KEY)||'{}'); cars = d.cars||[]; nextId = d.nextId||1; } catch(e) { cars=[]; }
+async function load() {
+  try {
+    const r = await fetch(API+'/latest', {headers:{'X-Master-Key':MASTER_KEY}});
+    const d = await r.json();
+    cars = d.record.cars||[]; nextId = d.record.nextId||1;
+  } catch(e) { cars=[]; }
+  renderCards(); updateStats();
 }
-function save() { localStorage.setItem(KEY, JSON.stringify({cars, nextId})); }
+
+async function save() {
+  try {
+    await fetch(API, {
+      method:'PUT',
+      headers:{'Content-Type':'application/json','X-Master-Key':MASTER_KEY},
+      body: JSON.stringify({cars, nextId})
+    });
+  } catch(e) { console.error('Save failed',e); }
+}
 
 function updateStats() {
   document.getElementById('statStock').textContent = cars.filter(c=>c.status==='TERSEDIA').length;
@@ -836,7 +852,7 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeAdmin();closePwModal();closeEdit();}});
 
-load(); updateStats(); renderCards();
+load();
 
 document.getElementById('adminBtn').addEventListener('click', checkPassword);
 </script>
