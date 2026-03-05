@@ -28,8 +28,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,10,0.
 .mobile-nav a{display:block;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.05);text-decoration:none;color:var(--gray);font-size:13px;letter-spacing:2px;text-transform:uppercase;transition:color 0.3s}
 .mobile-nav a:hover{color:var(--gold)}
 #utama{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:64px}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(201,168,76,0.09) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(201,168,76,0.06) 0%,transparent 40%),linear-gradient(180deg,#0A0A0A 0%,#111111 100%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%)}
+.hero-slideshow{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s ease;transform:scale(1.05);transition:opacity 1.5s ease,transform 6s ease}
+.hero-slide.active{opacity:1;transform:scale(1)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.3) 50%,rgba(0,0,0,0.75) 100%)}
+.hero-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(201,168,76,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%)}
 .hero-content{position:relative;z-index:2;text-align:center;padding:40px 20px;max-width:720px}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,168,76,0.4);padding:8px 20px;border-radius:100px;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:32px;animation:fadeInUp 0.8s ease both}
 .badge-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pdot 2s infinite}
@@ -224,7 +227,12 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
 </div>
 
 <section id="utama">
-  <div class="hero-bg"></div>
+  <div class="hero-slideshow" id="heroSlideshow">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200&q=80')"><div class="hero-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&q=80')"><div class="hero-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80')"><div class="hero-overlay"></div></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1542362567-b07e54358753?w=1200&q=80')"><div class="hero-overlay"></div></div>
+  </div>
   <div class="hero-grid"></div>
   <div class="hero-content">
     <div class="hero-badge"><span class="badge-dot"></span>Stok dikemaskini setiap hari</div>
@@ -247,7 +255,7 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
   <div style="text-align:center">
     <span class="section-tag">Pilihan Kereta Kami</span>
     <h2 class="section-title">Inventori Semasa</h2>
-    <p class="section-desc">Tekan ⚙️ di sudut bawah kiri untuk tambah atau urus stok kereta.</p>
+    
     <div class="status-badge"><span class="status-dot"></span>Stok Terkini</div>
   </div>
   <div class="filter-row" id="fType">
@@ -862,9 +870,21 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeAdmin();closePwModal();closeEdit();}});
 
+// Hero slideshow
+(function(){
+  const slides = document.querySelectorAll('.hero-slide');
+  let cur = 0;
+  setInterval(()=>{
+    slides[cur].classList.remove('active');
+    cur = (cur+1) % slides.length;
+    slides[cur].classList.add('active');
+  }, 4500);
+})();
+
 load();
 
 document.getElementById('adminBtn').addEventListener('click', checkPassword);
 </script>
 </body>
 </html>
+
