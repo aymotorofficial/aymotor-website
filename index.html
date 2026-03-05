@@ -66,6 +66,15 @@ section{padding:80px 20px}
 .car-img-wrap img{width:100%;height:100%;object-fit:cover}
 .no-img{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--gray);font-size:13px;gap:10px}
 .no-img span:first-child{font-size:48px}
+.gallery-wrap{position:relative;width:100%;height:200px;overflow:hidden;background:var(--dark3)}
+.gallery-slides{display:flex;height:100%;transition:transform 0.35s ease}
+.gallery-slides img{min-width:100%;height:100%;object-fit:cover;flex-shrink:0}
+.gallery-btn{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;background:rgba(0,0,0,0.55);border:none;color:white;font-size:18px;border-radius:50%;cursor:pointer;z-index:3;display:flex;align-items:center;justify-content:center}
+.gallery-prev{left:8px}.gallery-next{right:8px}
+.gallery-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:3}
+.gallery-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:background 0.2s}
+.gallery-dot.active{background:var(--gold)}
+.gallery-count{position:absolute;top:8px;right:48px;background:rgba(0,0,0,0.55);color:white;font-size:11px;padding:3px 8px;border-radius:10px;z-index:3}
 .sold-ov{position:absolute;inset:0;background:rgba(0,0,0,0.75);display:flex;align-items:center;justify-content:center;z-index:1}
 .sold-txt{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;letter-spacing:6px}
 .card-top{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;z-index:2}
@@ -170,7 +179,7 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
 .mdetails{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0;padding:16px;background:rgba(255,255,255,0.03);border-radius:6px}
 .mdlabel{font-size:10px;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
 .mdval{font-size:14px;font-weight:500}
-.mdesc{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px}
+.mdesc{font-size:14px;color:rgba(255,255,255,0.8);line-height:1.9;margin-bottom:20px;white-space:pre-line;word-break:break-word}
 .fade-in{opacity:0;transform:translateY(20px);transition:all 0.6s ease}
 .fade-in.vis{opacity:1;transform:translateY(0)}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
@@ -196,6 +205,9 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
     <li><a href="#hubungi">Hubungi</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:12px">
+    <a href="https://t.me/sambungbayarterkini" class="nav-wa" target="_blank" style="background:#229ED9;box-shadow:0 0 15px rgba(34,158,217,0.3)" title="Stok Terkini Telegram">
+      <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    </a>
     <a href="https://wa.me/60179173381" class="nav-wa" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
@@ -208,6 +220,7 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
   <a href="#inventori" onclick="closeMenu()">Inventori</a>
   <a href="#dokumen" onclick="closeMenu()">Dokumen</a>
   <a href="#hubungi" onclick="closeMenu()">Hubungi Kami</a>
+  <a href="https://t.me/sambungbayarterkini" target="_blank" onclick="closeMenu()" style="color:#229ED9">✈️ Stok Terkini — Telegram</a>
 </div>
 
 <section id="utama">
@@ -294,6 +307,10 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
         HUBUNGI VIA WHATSAPP
       </a>
       <p class="hnote">Hanya WhatsApp • Tiada panggilan telefon</p>
+      <a href="https://t.me/sambungbayarterkini" target="_blank" class="wabtn" style="background:#229ED9;box-shadow:0 0 30px rgba(34,158,217,0.2);margin-top:12px">
+        <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        STOK TERKINI — TELEGRAM
+      </a>
     </div>
   </div>
 </section>
@@ -306,6 +323,7 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
     <li><a href="#inventori">Inventori</a></li>
     <li><a href="#dokumen">Dokumen</a></li>
     <li><a href="#hubungi">Hubungi</a></li>
+    <li><a href="https://t.me/sambungbayarterkini" target="_blank" style="color:#229ED9">✈️ Telegram Stok</a></li>
   </ul>
   <p class="fcopy">© 2025 AY Motor. Hak Cipta Terpelihara.<br>Stok dikemaskini setiap hari.</p>
 </footer>
@@ -402,8 +420,24 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">URL Gambar (optional)</label>
-          <input class="form-input" id="fImg" placeholder="https://...">
+          <label class="form-label">Gambar 1 — URL (Utama)</label>
+          <input class="form-input" id="fImg1" placeholder="https://i.ibb.co/...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Gambar 2 — URL (optional)</label>
+          <input class="form-input" id="fImg2" placeholder="https://i.ibb.co/...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Gambar 3 — URL (optional)</label>
+          <input class="form-input" id="fImg3" placeholder="https://i.ibb.co/...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Gambar 4 — URL (optional)</label>
+          <input class="form-input" id="fImg4" placeholder="https://i.ibb.co/...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Gambar 5 — URL (optional)</label>
+          <input class="form-input" id="fImg5" placeholder="https://i.ibb.co/...">
         </div>
         <div class="form-group">
           <label class="form-label">Penerangan</label>
@@ -505,8 +539,24 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">URL Gambar</label>
-        <input class="form-input" id="eImg">
+        <label class="form-label">Gambar 1 — URL (Utama)</label>
+        <input class="form-input" id="eImg1" placeholder="https://i.ibb.co/...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Gambar 2 — URL (optional)</label>
+        <input class="form-input" id="eImg2" placeholder="https://i.ibb.co/...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Gambar 3 — URL (optional)</label>
+        <input class="form-input" id="eImg3" placeholder="https://i.ibb.co/...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Gambar 4 — URL (optional)</label>
+        <input class="form-input" id="eImg4" placeholder="https://i.ibb.co/...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Gambar 5 — URL (optional)</label>
+        <input class="form-input" id="eImg5" placeholder="https://i.ibb.co/...">
       </div>
       <div class="form-group">
         <label class="form-label">Penerangan</label>
@@ -569,10 +619,20 @@ function renderCards() {
     const acts = car.status==='TERJUAL'
       ?`<button class="cdbtn" onclick="openModal(${car.id})">Lihat Details</button><span class="csold">Sudah Terjual</span>`
       :`<button class="cdbtn" onclick="openModal(${car.id})">Lihat Details</button><a href="https://wa.me/${WA}?text=Salam%20AY%20Motor,%20saya%20berminat%20dengan%20${encodeURIComponent(car.nama)}%20-%20${car.harga}" target="_blank" class="cwabtn">📱 Tanya</a>`;
-    const imgH = car.img?`<img src="${car.img}" onerror="this.parentElement.innerHTML='<div class=\\'no-img\\'><span>🚗</span><span>Tiada Gambar</span></div>'">`:`<div class="no-img"><span>🚗</span><span>Tiada Gambar</span></div>`;
+    const imgs = car.imgs && car.imgs.length ? car.imgs : (car.img ? [car.img] : []);
+    let imgH;
+    if (!imgs.length) {
+      imgH = `<div class="car-img-wrap">${sold}<div class="card-top"><span class="btype ${tc}">${car.jenis}</span><span class="bstat ${sc}">${car.status}</span></div><div class="no-img"><span>🚗</span><span>Tiada Gambar</span></div></div>`;
+    } else if (imgs.length === 1) {
+      imgH = `<div class="car-img-wrap">${sold}<div class="card-top"><span class="btype ${tc}">${car.jenis}</span><span class="bstat ${sc}">${car.status}</span></div><img src="${imgs[0]}" onerror="this.parentElement.innerHTML='<div class=\\'no-img\\'><span>🚗</span><span>Tiada Gambar</span></div>'"></div>`;
+    } else {
+      const slides = imgs.map(u=>`<img src="${u}" onerror="this.style.display='none'">`).join('');
+      const dots = imgs.map((_,i)=>`<span class="gallery-dot${i===0?' active':''}" onclick="goDot(this,${car.id},${i})"></span>`).join('');
+      imgH = `<div class="gallery-wrap" id="gw${car.id}">${sold}<div class="card-top"><span class="btype ${tc}">${car.jenis}</span><span class="bstat ${sc}">${car.status}</span></div><div class="gallery-count" id="gc${car.id}">1/${imgs.length}</div><div class="gallery-slides" id="gs${car.id}">${slides}</div><button class="gallery-btn gallery-prev" onclick="galPrev(${car.id},${imgs.length})">‹</button><button class="gallery-btn gallery-next" onclick="galNext(${car.id},${imgs.length})">›</button><div class="gallery-dots">${dots}</div></div>`;
+    }
     const d = document.createElement('div');
     d.className = 'car-card';
-    d.innerHTML = `<div class="car-img-wrap">${sold}<div class="card-top"><span class="btype ${tc}">${car.jenis}</span><span class="bstat ${sc}">${car.status}</span></div>${imgH}</div><div class="card-body"><div class="cbrand">${car.jenama}</div><h3 class="cname">${car.nama}</h3><div class="cmeta"><div class="cprice">${car.harga}</div><div class="cyear">Tahun ${car.tahun}</div></div><div class="cactions">${acts}</div></div>`;
+    d.innerHTML = `${imgH}<div class="card-body"><div class="cbrand">${car.jenama}</div><h3 class="cname">${car.nama}</h3><div class="cmeta"><div class="cprice">${car.harga}</div><div class="cyear">Tahun ${car.tahun}</div></div><div class="cactions">${acts}</div></div>`;
     grid.appendChild(d);
   });
 }
@@ -608,11 +668,11 @@ function tambah() {
     status: document.getElementById('fStatus').value,
     warna:  document.getElementById('fWarna').value.trim()||'–',
     jarak:  document.getElementById('fJarak').value.trim()||'–',
-    img:    document.getElementById('fImg').value.trim(),
+    imgs:   [1,2,3,4,5].map(i=>document.getElementById('fImg'+i).value.trim()).filter(Boolean),
     desc:   document.getElementById('fDesc').value.trim()||`${nama} tahun ${tahun}. Hubungi kami untuk maklumat lanjut.`
   });
   save(); renderCards(); updateStats();
-  ['fNama','fTahun','fHarga','fBulanan','fWarna','fJarak','fImg','fDesc'].forEach(id=>document.getElementById(id).value='');
+  ['fNama','fTahun','fHarga','fBulanan','fWarna','fJarak','fImg1','fImg2','fImg3','fImg4','fImg5','fDesc'].forEach(id=>document.getElementById(id).value='');
   alert(`✅ "${nama}" berjaya ditambah!`);
 }
 
@@ -635,7 +695,11 @@ function bukaEdit(id) {
   document.getElementById('eStatus').value = c.status;
   document.getElementById('eWarna').value = c.warna === '–' ? '' : c.warna;
   document.getElementById('eJarak').value = c.jarak === '–' ? '' : c.jarak;
-  document.getElementById('eImg').value = c.img;
+  document.getElementById('eImg1').value = (c.imgs&&c.imgs[0])||c.img||'';
+  document.getElementById('eImg2').value = (c.imgs&&c.imgs[1])||'';
+  document.getElementById('eImg3').value = (c.imgs&&c.imgs[2])||'';
+  document.getElementById('eImg4').value = (c.imgs&&c.imgs[3])||'';
+  document.getElementById('eImg5').value = (c.imgs&&c.imgs[4])||'';
   document.getElementById('eDesc').value = c.desc;
   document.getElementById('editPanel').classList.add('open');
 }
@@ -656,7 +720,7 @@ function simpanEdit() {
     status: document.getElementById('eStatus').value,
     warna:  document.getElementById('eWarna').value.trim()||'–',
     jarak:  document.getElementById('eJarak').value.trim()||'–',
-    img:    document.getElementById('eImg').value.trim(),
+    imgs:   [1,2,3,4,5].map(i=>document.getElementById('eImg'+i).value.trim()).filter(Boolean),
     desc:   document.getElementById('eDesc').value.trim()
   };
   save(); renderCards(); updateStats(); renderCarList();
@@ -674,15 +738,61 @@ function padamSemua() {
   save(); renderCards(); updateStats(); renderCarList();
 }
 
+const galIdx = {};
+function galNext(id, total) {
+  galIdx[id] = ((galIdx[id]||0) + 1) % total;
+  updateGal(id, total);
+}
+function galPrev(id, total) {
+  galIdx[id] = ((galIdx[id]||0) - 1 + total) % total;
+  updateGal(id, total);
+}
+function goDot(el, id, i) {
+  galIdx[id] = i; 
+  const total = el.parentElement.children.length;
+  updateGal(id, total);
+}
+function updateGal(id, total) {
+  const idx = galIdx[id]||0;
+  const sl = document.getElementById('gs'+id);
+  const gc = document.getElementById('gc'+id);
+  const gw = document.getElementById('gw'+id);
+  if(sl) sl.style.transform = `translateX(-${idx*100}%)`;
+  if(gc) gc.textContent = `${idx+1}/${total}`;
+  if(gw) gw.querySelectorAll('.gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+}
+
 function openModal(id) {
   const c = cars.find(x=>x.id===id); if(!c) return;
   document.getElementById('mBrand').textContent = c.jenama;
   document.getElementById('mTitle').textContent = c.nama;
   document.getElementById('mPrice').textContent = c.harga;
-  document.getElementById('mDesc').textContent = c.desc;
-  document.getElementById('mImg').innerHTML = c.img
-    ?`<img src="${c.img}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='<span style=\\'font-size:64px\\'>🚗</span>'">`
-    :'<span style="font-size:64px">🚗</span>';
+  // Format desc — tukar caps kepada proper case & tambah line break
+  function fmtDesc(txt) {
+    if (!txt) return '';
+    return txt
+      .replace(/([.:])\s*/g, '$1\n')
+      .split('\n')
+      .map(l => l.trim())
+      .filter(Boolean)
+      .map(l => l.charAt(0).toUpperCase() + l.slice(1).toLowerCase()
+        .replace(/\b(rm|kl|cc|sc|suv|mpv|abs|vvt|cvt|dsg|awd|4wd|2wd|myvi|vios|crv|hrv|brv|bmw|mercedes|toyota|honda|perodua|proton|nissan|mazda)\b/gi, m => m.toUpperCase())
+      )
+      .join('\n');
+  }
+  document.getElementById('mDesc').textContent = fmtDesc(c.desc);
+  const imgs = c.imgs && c.imgs.length ? c.imgs : (c.img ? [c.img] : []);
+  const mImgEl = document.getElementById('mImg');
+  if (!imgs.length) {
+    mImgEl.innerHTML = '<span style="font-size:64px">🚗</span>';
+  } else if (imgs.length === 1) {
+    mImgEl.innerHTML = `<img src="${imgs[0]}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='<span style=\\'font-size:64px\\'>🚗</span>'">`;
+  } else {
+    const slides = imgs.map(u=>`<img src="${u}" style="min-width:100%;height:100%;object-fit:cover;flex-shrink:0">`).join('');
+    const dots = imgs.map((_,i)=>`<span class="gallery-dot${i===0?' active':''}" onclick="goDot(this,'m',${i})"></span>`).join('');
+    mImgEl.innerHTML = `<div style="position:relative;width:100%;height:100%"><div class="gallery-slides" id="gsm" style="display:flex;height:100%;transition:transform 0.35s ease">${slides}</div><button class="gallery-btn gallery-prev" onclick="galPrev('m',${imgs.length})">‹</button><button class="gallery-btn gallery-next" onclick="galNext('m',${imgs.length})">›</button><div class="gallery-dots">${dots}</div><div class="gallery-count" id="gcm">1/${imgs.length}</div></div>`;
+    galIdx['m'] = 0;
+  }
   document.getElementById('mDets').innerHTML = `
     <div><div class="mdlabel">Tahun</div><div class="mdval">${c.tahun}</div></div>
     <div><div class="mdlabel">Jenis</div><div class="mdval">${c.jenis}</div></div>
@@ -732,3 +842,4 @@ document.getElementById('adminBtn').addEventListener('click', checkPassword);
 </script>
 </body>
 </html>
+
