@@ -357,7 +357,10 @@ footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding
   <div class="admin-box">
     <div class="admin-head">
       <h3>⚙️ Panel Admin</h3>
-      <button class="mclose" onclick="closeAdmin()">✕</button>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="mclose" style="background:rgba(192,57,43,0.15);color:#e74c3c;font-size:11px;width:auto;padding:0 10px;border-radius:4px;letter-spacing:1px" onclick="logout()">🔒 LOGOUT</button>
+        <button class="mclose" onclick="closeAdmin()">✕</button>
+      </div>
     </div>
     <div class="admin-body">
       <div class="tab-row">
@@ -576,12 +579,15 @@ const API = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 const ADMIN_HASH = "48f660a712fc49adf737cf210151a6a4c2ab2f2662c042e4a417058779d8df64";
 let cars = [], nextId = 1, activeType = 'all', activeBrand = 'all';
 
+let isLoggedIn = false;
+
 async function hashPw(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 
 function checkPassword() {
+  if (isLoggedIn) { openAdmin(); return; }
   document.getElementById('pwInput').value = '';
   document.getElementById('pwErr').style.display = 'none';
   document.getElementById('pwModal').classList.add('open');
@@ -591,11 +597,12 @@ function checkPassword() {
 async function submitPw() {
   const val = document.getElementById('pwInput').value;
   const hashed = await hashPw(val);
-  if (hashed === ADMIN_HASH) { closePwModal(); openAdmin(); }
+  if (hashed === ADMIN_HASH) { isLoggedIn = true; closePwModal(); openAdmin(); }
   else { document.getElementById('pwErr').style.display='block'; document.getElementById('pwInput').value=''; document.getElementById('pwInput').focus(); }
 }
 function closePwModal() { document.getElementById('pwModal').classList.remove('open'); document.body.style.overflow=''; }
 function closePwBg(e) { if(e.target===document.getElementById('pwModal')) closePwModal(); }
+function logout() { isLoggedIn = false; closeAdmin(); alert('🔒 Anda telah logout!'); }
 
 async function load() {
   try {
@@ -858,3 +865,4 @@ document.getElementById('adminBtn').addEventListener('click', checkPassword);
 </script>
 </body>
 </html>
+
