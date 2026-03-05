@@ -832,7 +832,10 @@ function openModal(id) {
 
 function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
 function closeBg(e){if(e.target===document.getElementById('modal'))closeModal();}
-function openAdmin(){renderCarList();document.getElementById('adminPanel').classList.add('open');document.body.style.overflow='hidden';}
+function openAdmin(){
+  if(!isLoggedIn){ checkPassword(); return; }
+  renderCarList();document.getElementById('adminPanel').classList.add('open');document.body.style.overflow='hidden';
+}
 function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');document.body.style.overflow='';}
 function closeBgAdmin(e){if(e.target===document.getElementById('adminPanel'))closeAdmin();}
 function switchTab(n,btn){
@@ -865,4 +868,3 @@ document.getElementById('adminBtn').addEventListener('click', checkPassword);
 </script>
 </body>
 </html>
-
