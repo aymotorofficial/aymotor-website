@@ -1,218 +1,734 @@
-no<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AY Motor | Premium Car Dealer</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
+<title>AY Motor — Premium Auto Sales</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body{
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  background:#f3f4f6;
-  color:#222;
-}
-
-header{
-  background:#111827;
-  color:white;
-  text-align:center;
-  padding:60px 20px;
-}
-
-header h1{
-  margin:0;
-  font-size:40px;
-}
-
-header p{
-  opacity:0.8;
-}
-
-.section{
-  padding:60px 20px;
-  max-width:1100px;
-  margin:auto;
-}
-
-.section h2{
-  text-align:center;
-  margin-bottom:30px;
-}
-
-.filter-buttons{
-  text-align:center;
-  margin-bottom:40px;
-}
-
-.filter-buttons button{
-  padding:10px 18px;
-  margin:5px;
-  border:none;
-  border-radius:8px;
-  background:#111827;
-  color:white;
-  cursor:pointer;
-  font-weight:600;
-}
-
-.filter-buttons button:hover{
-  background:#2563eb;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
-}
-
-.card{
-  background:white;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:translateY(-5px);
-}
-
-.card img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
-}
-
-.card-content{
-  padding:20px;
-}
-
-.price{
-  font-weight:600;
-  color:#2563eb;
-  margin:10px 0;
-}
-
-.btn{
-  display:inline-block;
-  padding:10px 15px;
-  background:#16a34a;
-  color:white;
-  text-decoration:none;
-  border-radius:8px;
-  font-weight:600;
-}
-
-footer{
-  text-align:center;
-  padding:30px;
-  background:#111827;
-  color:white;
-  margin-top:50px;
-}
+:root{--gold:#C9A84C;--gold-light:#E5C97A;--gold-dark:#8B6914;--black:#0A0A0A;--dark:#111111;--dark2:#1A1A1A;--dark3:#222222;--gray:#888888;--white:#FFFFFF;--green:#25D366;--red:#C0392B;--orange:#E67E22}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,10,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,0.15);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-circle{width:42px;height:42px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:15px;color:var(--black);box-shadow:0 0 20px rgba(201,168,76,0.3)}
+.logo-name{font-weight:700;font-size:17px;color:var(--white);letter-spacing:2px;line-height:1}
+.logo-sub{font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--gray);font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;transition:color 0.3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s}
+.nav-links a:hover{color:var(--gold)}.nav-links a:hover::after{width:100%}
+.nav-wa{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.3s;box-shadow:0 0 15px rgba(37,211,102,0.3)}
+.nav-wa:hover{transform:scale(1.1)}.nav-wa svg{width:20px;height:20px;fill:white}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gold);border-radius:2px}
+.mobile-nav{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(10,10,10,0.99);backdrop-filter:blur(20px);z-index:999;padding:20px;border-bottom:1px solid rgba(201,168,76,0.15)}
+.mobile-nav.open{display:block}
+.mobile-nav a{display:block;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.05);text-decoration:none;color:var(--gray);font-size:13px;letter-spacing:2px;text-transform:uppercase;transition:color 0.3s}
+.mobile-nav a:hover{color:var(--gold)}
+#utama{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:64px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(201,168,76,0.09) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(201,168,76,0.06) 0%,transparent 40%),linear-gradient(180deg,#0A0A0A 0%,#111111 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%)}
+.hero-content{position:relative;z-index:2;text-align:center;padding:40px 20px;max-width:720px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,168,76,0.4);padding:8px 20px;border-radius:100px;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:32px;animation:fadeInUp 0.8s ease both}
+.badge-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pdot 2s infinite}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,12vw,90px);font-weight:600;line-height:1;margin-bottom:24px;animation:fadeInUp 0.8s ease 0.1s both}
+.hero-title em{font-style:italic;color:var(--gold);display:block}
+.hero-desc{font-size:15px;color:var(--gray);line-height:1.8;margin-bottom:40px;animation:fadeInUp 0.8s ease 0.2s both}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeInUp 0.8s ease 0.3s both}
+.btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--black);padding:14px 32px;border-radius:4px;font-weight:600;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;border:none;font-family:'Outfit',sans-serif;cursor:pointer}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,168,76,0.3)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(201,168,76,0.5);color:var(--gold);padding:14px 32px;border-radius:4px;font-weight:500;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;background:transparent;font-family:'Outfit',sans-serif}
+.btn-outline:hover{background:rgba(201,168,76,0.1);transform:translateY(-2px)}
+.stats-bar{display:flex;gap:1px;background:rgba(201,168,76,0.1);border-top:1px solid rgba(201,168,76,0.15);border-bottom:1px solid rgba(201,168,76,0.15);width:100%}
+.stat-item{flex:1;text-align:center;padding:28px 16px;background:var(--dark);transition:background 0.3s}
+.stat-item:hover{background:rgba(201,168,76,0.05)}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px}
+.stat-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+section{padding:80px 20px}
+.section-tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block;text-align:center}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,7vw,56px);font-weight:600;text-align:center;line-height:1.15;margin-bottom:12px}
+.section-desc{text-align:center;color:var(--gray);font-size:14px;line-height:1.8;max-width:520px;margin:0 auto 48px}
+.divider{width:60px;height:2px;background:var(--gold);margin:16px auto 48px}
+#inventori{background:var(--dark)}
+.status-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);padding:6px 16px;border-radius:100px;font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:32px}
+.status-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pdot 1.5s infinite}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
+.fbtn{padding:8px 18px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:var(--gray);font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:all 0.3s}
+.fbtn:hover,.fbtn.active{background:var(--gold);border-color:var(--gold);color:var(--black);font-weight:600}
+.fbtn.lk.active{background:var(--green);border-color:var(--green);color:white}
+.fbtn.lb.active{background:#229ED9;border-color:#229ED9;color:white}
+.inv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+.car-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;overflow:hidden;transition:all 0.3s}
+.car-card:hover{transform:translateY(-4px);border-color:rgba(201,168,76,0.3);box-shadow:0 20px 40px rgba(0,0,0,0.4)}
+.car-img-wrap{width:100%;height:200px;display:flex;align-items:center;justify-content:center;background:var(--dark3);position:relative;overflow:hidden}
+.car-img-wrap img{width:100%;height:100%;object-fit:cover}
+.no-img{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--gray);font-size:13px;gap:10px}
+.no-img span:first-child{font-size:48px}
+.sold-ov{position:absolute;inset:0;background:rgba(0,0,0,0.75);display:flex;align-items:center;justify-content:center;z-index:1}
+.sold-txt{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;letter-spacing:6px}
+.card-top{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;z-index:2}
+.btype{padding:5px 12px;border-radius:3px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase}
+.bsb{background:var(--gold);color:var(--black)}.blk{background:var(--green);color:white}.blb{background:#229ED9;color:white}
+.bstat{padding:5px 12px;border-radius:3px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase}
+.st{background:#27AE60;color:white}.sd{background:var(--orange);color:white}.sj{background:var(--red);color:white}
+.card-body{padding:20px}
+.cbrand{font-size:10px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.cname{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:12px;line-height:1.3}
+.cmeta{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.cprice{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--gold)}
+.cyear{font-size:12px;color:var(--gray)}
+.cactions{display:flex;gap:10px}
+.cdbtn{flex:1;padding:10px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:var(--gray);font-family:'Outfit',sans-serif;font-size:12px;border-radius:4px;cursor:pointer;transition:all 0.3s}
+.cdbtn:hover{border-color:var(--gold);color:var(--gold)}
+.cwabtn{flex:1;padding:10px;background:var(--gold);color:var(--black);border:none;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;border-radius:4px;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
+.cwabtn:hover{background:var(--gold-light)}
+.csold{flex:1;text-align:right;color:var(--red);font-size:13px;display:flex;align-items:center;justify-content:flex-end}
+.empty-state{grid-column:1/-1;text-align:center;padding:80px 20px}
+.empty-state div{font-size:56px;margin-bottom:16px}
+.empty-state p{color:var(--gray);font-size:14px;line-height:1.8}
+.empty-state button{margin-top:20px;padding:12px 28px;background:var(--gold);color:var(--black);border:none;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border-radius:4px;cursor:pointer;transition:all 0.3s}
+.empty-state button:hover{background:var(--gold-light)}
+/* Admin */
+.admin-toggle{position:fixed;bottom:24px;left:24px;z-index:900;width:48px;height:48px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;transition:all 0.3s;box-shadow:0 4px 16px rgba(0,0,0,0.3)}
+.admin-toggle:hover{background:rgba(201,168,76,0.28);transform:scale(1.05)}
+.admin-panel{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:3000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(10px)}
+.admin-panel.open{display:flex;animation:fadeIn 0.2s ease}
+.admin-box{background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:14px;max-width:500px;width:100%;max-height:92vh;overflow-y:auto;animation:slideUp 0.3s ease}
+.admin-head{padding:20px 22px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--dark2);z-index:1}
+.admin-head h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600}
+.mclose{width:32px;height:32px;background:rgba(255,255,255,0.06);border:none;border-radius:50%;color:var(--gray);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;font-family:'Outfit',sans-serif}
+.mclose:hover{background:rgba(255,255,255,0.14);color:white}
+.admin-body{padding:22px}
+.tab-row{display:flex;gap:6px;margin-bottom:20px;background:rgba(255,255,255,0.03);padding:4px;border-radius:6px}
+.tab-btn{flex:1;padding:9px;border:none;background:transparent;color:var(--gray);font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-radius:4px;transition:all 0.3s}
+.tab-btn.active{background:rgba(201,168,76,0.15);color:var(--gold);font-weight:600}
+.tab-content{display:none}.tab-content.active{display:block}
+.form-group{margin-bottom:13px}
+.form-label{display:block;font-size:10px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.form-input,.form-select,.form-textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--white);font-family:'Outfit',sans-serif;font-size:13px;padding:10px 13px;border-radius:5px;transition:border-color 0.3s;outline:none}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:rgba(201,168,76,0.5)}
+.form-select option{background:var(--dark2)}
+.form-textarea{min-height:72px;resize:vertical}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-btn{width:100%;padding:13px;background:var(--gold);color:var(--black);border:none;font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:5px;cursor:pointer;transition:all 0.3s;margin-top:6px}
+.form-btn:hover{background:var(--gold-light)}
+.form-btn.red{background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.4);color:var(--red);margin-top:10px}
+.form-btn.red:hover{background:var(--red);color:white;border-color:var(--red)}
+.car-list-item{display:flex;align-items:center;gap:10px;padding:11px 13px;background:rgba(255,255,255,0.03);border-radius:6px;margin-bottom:7px;border:1px solid rgba(255,255,255,0.04)}
+.cli-info{flex:1;min-width:0}
+.cli-name{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cli-sub{font-size:11px;color:var(--gray);margin-top:3px}
+.cli-price{font-size:13px;color:var(--gold);font-weight:600;flex-shrink:0;margin-right:6px}
+.cli-del{padding:5px 11px;background:transparent;border:1px solid rgba(192,57,43,0.4);color:var(--red);font-family:'Outfit',sans-serif;font-size:11px;border-radius:3px;cursor:pointer;flex-shrink:0;transition:all 0.3s}
+.cli-del:hover{background:var(--red);color:white;border-color:var(--red)}
+.cli-edit{padding:5px 11px;background:transparent;border:1px solid rgba(201,168,76,0.4);color:var(--gold);font-family:'Outfit',sans-serif;font-size:11px;border-radius:3px;cursor:pointer;flex-shrink:0;transition:all 0.3s;margin-right:4px}
+.cli-edit:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.cli-empty{text-align:center;padding:32px 20px;color:var(--gray);font-size:13px}
+#dokumen{background:var(--black)}
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+.doc-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:32px 28px;transition:all 0.3s}
+.doc-card:hover{border-color:rgba(201,168,76,0.25);transform:translateY(-3px)}
+.doc-icon{font-size:40px;margin-bottom:16px}
+.doc-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:8px}
+.doc-desc{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px}
+.doc-list{list-style:none}
+.doc-list li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(255,255,255,0.75);padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.doc-list li::before{content:'✓';color:var(--gold);font-size:12px;margin-top:1px;flex-shrink:0}
+#hubungi{background:var(--dark)}
+.hw{max-width:600px;margin:0 auto;text-align:center}
+.hlist{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;text-align:left}
+.hlist li{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:var(--gray);line-height:1.5}
+.hlist li::before{content:'●';color:var(--gold);font-size:8px;margin-top:5px;flex-shrink:0}
+.hcard{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:40px 32px}
+.hicon{font-size:52px;margin-bottom:16px}
+.htitle{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;margin-bottom:8px}
+.hnote{font-size:12px;color:var(--gray);margin-top:12px;letter-spacing:1px}
+.wabtn{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--green);color:white;padding:16px 40px;border-radius:6px;font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all 0.3s;width:100%;margin-top:20px;box-shadow:0 0 30px rgba(37,211,102,0.2);font-family:'Outfit',sans-serif}
+.wabtn:hover{background:#20bd5c;transform:translateY(-2px)}.wabtn svg{width:22px;height:22px;fill:white}
+footer{background:var(--black);border-top:1px solid rgba(201,168,76,0.1);padding:48px 20px 32px;text-align:center}
+.flogo{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;margin-bottom:4px}
+.fsub{font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:32px}
+.flinks{display:flex;justify-content:center;gap:32px;list-style:none;margin-bottom:32px;flex-wrap:wrap}
+.flinks a{text-decoration:none;color:var(--gray);font-size:12px;letter-spacing:1.5px;transition:color 0.3s}
+.flinks a:hover{color:var(--gold)}
+.fcopy{font-size:11px;color:rgba(255,255,255,0.2);line-height:1.8}
+.float-wa{position:fixed;bottom:24px;right:24px;z-index:900;width:56px;height:56px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:all 0.3s}
+.float-wa:hover{transform:scale(1.1)}.float-wa svg{width:28px;height:28px;fill:white}
+.fwp{position:absolute;inset:0;border-radius:50%;background:var(--green);animation:fpulse 2s infinite;z-index:-1}
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:2000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)}
+.modal-ov.open{display:flex;animation:fadeIn 0.2s ease}
+.modal-box{background:var(--dark2);border:1px solid rgba(201,168,76,0.2);border-radius:12px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;animation:slideUp 0.3s ease}
+.mhead{padding:24px 24px 0;display:flex;justify-content:space-between;align-items:flex-start}
+.mtitle{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600}
+.mbody{padding:20px 24px 24px}
+.mimg{width:100%;height:220px;background:var(--dark3);border-radius:8px;overflow:hidden;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:64px}
+.mimg img{width:100%;height:100%;object-fit:cover}
+.mprice{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;color:var(--gold);margin-bottom:4px}
+.mbrand{font-size:10px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.mdetails{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0;padding:16px;background:rgba(255,255,255,0.03);border-radius:6px}
+.mdlabel{font-size:10px;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.mdval{font-size:14px;font-weight:500}
+.mdesc{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px}
+.fade-in{opacity:0;transform:translateY(20px);transition:all 0.6s ease}
+.fade-in.vis{opacity:1;transform:translateY(0)}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+@keyframes fpulse{0%{transform:scale(1);opacity:0.6}100%{transform:scale(1.5);opacity:0}}
+@media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}.stats-bar{flex-wrap:wrap}.stat-item{flex:0 0 50%}.hlist{grid-template-columns:1fr}section{padding:60px 16px}.form-row{grid-template-columns:1fr}}
+@media(min-width:769px){.mobile-nav{display:none!important}}
 </style>
 </head>
-
 <body>
 
-<header>
-<h1>AY MOTOR</h1>
-<p>Premium Car Broker & Dealer Malaysia</p>
-</header>
+<nav>
+  <a href="#utama" class="nav-logo">
+    <div class="logo-circle">AY</div>
+    <div><div class="logo-name">AY MOTOR</div><div class="logo-sub">Premium Auto Sales</div></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#utama">Utama</a></li>
+    <li><a href="#inventori">Inventori</a></li>
+    <li><a href="#dokumen">Dokumen</a></li>
+    <li><a href="#hubungi">Hubungi</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px">
+    <a href="https://wa.me/60179173381" class="nav-wa" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
 
-<section class="section">
-<h2>Stok Kereta</h2>
-
-<div class="filter-buttons">
-<button onclick="filterCars('all')">Semua</button>
-<button onclick="filterCars('sambung')">Sambung Bayar</button>
-<button onclick="filterCars('kedai')">Loan Kedai</button>
-<button onclick="filterCars('bank')">Bank Loan</button>
-<button onclick="filterCars('finance')">Finance</button>
-</div>
-
-<div class="grid">
-
-<div class="card sambung">
-<img src="https://images.unsplash.com/photo-1550355291-bbee04a92027">
-<div class="card-content">
-<h3>PERODUA MYVI 2019</h3>
-<div class="price">Sambung RM 850 / Bulan</div>
-<a href="https://wa.me/60179173381" class="btn">Tanya WhatsApp</a>
-</div>
-</div>
-
-<div class="card kedai">
-<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
-<div class="card-content">
-<h3>TOYOTA VIOS 2018</h3>
-<div class="price">Deposit Rendah</div>
-<a href="https://wa.me/60179173381" class="btn">Tanya WhatsApp</a>
-</div>
+<div class="mobile-nav" id="mNav">
+  <a href="#utama" onclick="closeMenu()">Utama</a>
+  <a href="#inventori" onclick="closeMenu()">Inventori</a>
+  <a href="#dokumen" onclick="closeMenu()">Dokumen</a>
+  <a href="#hubungi" onclick="closeMenu()">Hubungi Kami</a>
 </div>
 
-<div class="card bank">
-<img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6">
-<div class="card-content">
-<h3>HONDA CIVIC 2019</h3>
-<div class="price">RM 75,000</div>
-<a href="https://wa.me/60179173381" class="btn">Tanya WhatsApp</a>
-</div>
-</div>
+<section id="utama">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="badge-dot"></span>Stok dikemaskini setiap hari</div>
+    <h1 class="hero-title">Jualan Kereta<em>Terpercaya</em></h1>
+    <p class="hero-desc">AY Motor menawarkan kereta berkualiti dengan pelbagai opsyen pembiayaan – Sambung Bayar, Loan Kedai, dan Loan Bank. Proses mudah, cepat dan telus.</p>
+    <div class="hero-btns">
+      <a href="#inventori" class="btn-gold">🚗 Lihat Inventori</a>
+      <a href="#hubungi" class="btn-outline">Tanya Kami</a>
+    </div>
+  </div>
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num" id="statStock">0</div><div class="stat-label">Stok Tersedia</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Jenis Pembiayaan</div></div>
+    <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Jenama Kereta</div></div>
+    <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Hari Seminggu</div></div>
+  </div>
+</section>
 
-<div class="card finance">
-<img src="https://images.unsplash.com/photo-1549924231-f129b911e442">
-<div class="card-content">
-<h3>NISSAN NAVARA 2021</h3>
-<div class="price">Full Loan Available</div>
-<a href="https://wa.me/60179173381" class="btn">Tanya WhatsApp</a>
-</div>
-</div>
+<section id="inventori">
+  <div style="text-align:center">
+    <span class="section-tag">Pilihan Kereta Kami</span>
+    <h2 class="section-title">Inventori Semasa</h2>
+    <p class="section-desc">Tekan ⚙️ di sudut bawah kiri untuk tambah atau urus stok kereta.</p>
+    <div class="status-badge"><span class="status-dot"></span>Stok Terkini</div>
+  </div>
+  <div class="filter-row" id="fType">
+    <button class="fbtn active" data-type="all">SEMUA</button>
+    <button class="fbtn" data-type="SAMBUNG BAYAR">SAMBUNG BAYAR</button>
+    <button class="fbtn lk" data-type="LOAN KEDAI">LOAN KEDAI</button>
+    <button class="fbtn lb" data-type="LOAN BANK">LOAN BANK</button>
+  </div>
+  <div class="filter-row" id="fBrand">
+    <button class="fbtn active" data-brand="all">SEMUA JENAMA</button>
+    <button class="fbtn" data-brand="TOYOTA">TOYOTA</button>
+    <button class="fbtn" data-brand="HONDA">HONDA</button>
+    <button class="fbtn" data-brand="NISSAN">NISSAN</button>
+    <button class="fbtn" data-brand="PERODUA">PERODUA</button>
+    <button class="fbtn" data-brand="PROTON">PROTON</button>
+    <button class="fbtn" data-brand="MERCEDES">MERCEDES</button>
+    <button class="fbtn" data-brand="BMW">BMW</button>
+    <button class="fbtn" data-brand="MAZDA">MAZDA</button>
+  </div>
+  <div class="inv-grid" id="invGrid"></div>
+</section>
 
-</div>
+<section id="dokumen" class="fade-in">
+  <span class="section-tag">Panduan Pembelian</span>
+  <h2 class="section-title">Dokumen & Surat Sambung</h2>
+  <p class="section-desc">Dokumen yang diperlukan mengikut jenis pembiayaan. Sediakan awal untuk proses lebih cepat.</p>
+  <div class="divider"></div>
+  <div class="doc-grid">
+    <div class="doc-card fade-in"><div class="doc-icon">💰</div><h3 class="doc-title">Sambung Bayar</h3><p class="doc-desc">Ambil alih pinjaman dari pemilik terdahulu. Sesuai untuk yang ada isu rekod kredit.</p><ul class="doc-list"><li>IC pembeli (depan & belakang)</li><li>Salinan geran / roadtax</li><li>Slip gaji 3 bulan terkini</li><li>Penyata bank 3 bulan</li><li>Surat perjanjian S&P</li><li>Surat akuan sambung bayar</li><li>Booking fee (bergantung harga)</li></ul></div>
+    <div class="doc-card fade-in"><div class="doc-icon">🏪</div><h3 class="doc-title">Loan Kedai (In-House)</h3><p class="doc-desc">Pembiayaan langsung dari pihak dealer. Proses lebih mudah dan fleksibel.</p><ul class="doc-list"><li>IC pembeli (depan & belakang)</li><li>Slip gaji atau bukti pendapatan</li><li>Penyata bank 1–3 bulan</li><li>Deposit awal (10–20%)</li><li>Surat perjanjian kedai</li><li>Borang permohonan kredit</li></ul></div>
+    <div class="doc-card fade-in"><div class="doc-icon">🏦</div><h3 class="doc-title">Loan Bank / Finance</h3><p class="doc-desc">Pinjaman melalui bank atau syarikat kewangan. Kadar faedah lebih rendah.</p><ul class="doc-list"><li>IC pembeli (depan & belakang)</li><li>Slip gaji 3 bulan terkini</li><li>Penyata bank 3–6 bulan</li><li>CCRIS / CTOS (semak sendiri)</li><li>EA Form atau Borang B/BE</li><li>Deposit awal (10%)</li></ul></div>
+    <div class="doc-card fade-in"><div class="doc-icon">📋</div><h3 class="doc-title">Dokumen Tambahan</h3><p class="doc-desc">Dokumen sampingan yang mungkin diperlukan semasa proses pembelian.</p><ul class="doc-list"><li>Salinan lesen memandu</li><li>Bil utiliti (bukti alamat)</li><li>Surat nikah (jika berkaitan)</li><li>Insurans kereta baharu</li><li>Roadtax baharu (jika tamat)</li><li>Inspection report kenderaan</li></ul></div>
+  </div>
+  <div style="text-align:center;margin-top:40px">
+    <a href="https://wa.me/60179173381?text=Salam%20AY%20Motor,%20saya%20ingin%20tanya%20tentang%20dokumen" class="btn-gold" target="_blank">📞 Dapatkan Panduan Percuma</a>
+  </div>
+</section>
+
+<section id="hubungi" class="fade-in">
+  <div class="hw">
+    <span class="section-tag">Tanya Kami</span>
+    <h2 class="section-title">Hubungi Kami</h2>
+    <p class="section-desc">Ada pertanyaan tentang kereta atau proses pembiayaan? Hubungi kami melalui WhatsApp untuk respons pantas.</p>
+    <div class="divider"></div>
+    <ul class="hlist">
+      <li>Respons cepat dalam masa 1 jam</li>
+      <li>Khidmat nasihat percuma tanpa komitmen</li>
+      <li>Test drive boleh diatur atas permintaan</li>
+      <li>Bantuan urusan pinjaman dari A hingga Z</li>
+    </ul>
+    <div class="hcard">
+      <div class="hicon">💬</div>
+      <h3 class="htitle">WhatsApp Kami</h3>
+      <p style="font-size:13px;color:var(--gray);line-height:1.7">Hantar pertanyaan anda terus ke WhatsApp kami. Kami akan balas dengan segera. Beroperasi 7 hari seminggu.</p>
+      <a href="https://wa.me/60179173381?text=Salam%20AY%20Motor,%20saya%20ingin%20bertanya%20tentang%20kereta" class="wabtn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        HUBUNGI VIA WHATSAPP
+      </a>
+      <p class="hnote">Hanya WhatsApp • Tiada panggilan telefon</p>
+    </div>
+  </div>
 </section>
 
 <footer>
-© 2025 AY Motor. All Rights Reserved.
+  <div class="flogo">AY MOTOR</div>
+  <div class="fsub">Premium Auto Sales • Malaysia</div>
+  <ul class="flinks">
+    <li><a href="#utama">Utama</a></li>
+    <li><a href="#inventori">Inventori</a></li>
+    <li><a href="#dokumen">Dokumen</a></li>
+    <li><a href="#hubungi">Hubungi</a></li>
+  </ul>
+  <p class="fcopy">© 2025 AY Motor. Hak Cipta Terpelihara.<br>Stok dikemaskini setiap hari.</p>
 </footer>
 
+<a href="https://wa.me/60179173381" class="float-wa" target="_blank">
+  <div class="fwp"></div>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Admin Button -->
+<div class="admin-toggle" id="adminBtn" title="Panel Admin">⚙️</div>
+
+<!-- Password Modal -->
+<div class="modal-ov" id="pwModal" onclick="closePwBg(event)">
+  <div class="modal-box" style="max-width:340px">
+    <div class="mhead">
+      <h3 class="mtitle">🔐 Admin Login</h3>
+      <button class="mclose" onclick="closePwModal()">✕</button>
+    </div>
+    <div class="mbody" style="padding-top:16px">
+      <p style="font-size:13px;color:var(--gray);margin-bottom:16px">Masukkan password untuk akses Panel Admin.</p>
+      <input class="form-input" type="password" id="pwInput" placeholder="Masukkan password..." onkeydown="if(event.key==='Enter')submitPw()" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--white);font-family:'Outfit',sans-serif;font-size:14px;padding:12px 14px;border-radius:5px;outline:none;margin-bottom:8px">
+      <p id="pwErr" style="font-size:12px;color:var(--red);margin-bottom:12px;display:none">❌ Password salah. Cuba lagi.</p>
+      <button onclick="submitPw()" style="width:100%;padding:13px;background:var(--gold);color:var(--black);border:none;font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:5px;cursor:pointer;transition:all 0.3s">MASUK</button>
+    </div>
+  </div>
+</div>
+
+<!-- Admin Panel -->
+<div class="admin-panel" id="adminPanel" onclick="closeBgAdmin(event)">
+  <div class="admin-box">
+    <div class="admin-head">
+      <h3>⚙️ Panel Admin</h3>
+      <button class="mclose" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="admin-body">
+      <div class="tab-row">
+        <button class="tab-btn active" onclick="switchTab('tambah',this)">➕ Tambah Kereta</button>
+        <button class="tab-btn" onclick="switchTab('senarai',this)">📋 Urus Stok</button>
+      </div>
+
+      <div class="tab-content active" id="tab-tambah">
+        <div class="form-group">
+          <label class="form-label">Nama Kereta *</label>
+          <input class="form-input" id="fNama" placeholder="cth: Perodua Myvi 1.5 AV 2022">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Jenama *</label>
+            <select class="form-select" id="fJenama">
+              <option>PERODUA</option><option>PROTON</option><option>TOYOTA</option>
+              <option>HONDA</option><option>NISSAN</option><option>MAZDA</option>
+              <option>MERCEDES</option><option>BMW</option><option>MITSUBISHI</option>
+              <option>HYUNDAI</option><option>KIA</option><option>LAIN-LAIN</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tahun *</label>
+            <input class="form-input" id="fTahun" type="number" placeholder="2022" min="1990" max="2030">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Harga (RM) *</label>
+            <input class="form-input" id="fHarga" placeholder="45,000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Anggaran Bulanan</label>
+            <input class="form-input" id="fBulanan" placeholder="650/bulan">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Jenis Pembiayaan *</label>
+            <select class="form-select" id="fJenis">
+              <option>SAMBUNG BAYAR</option><option>LOAN KEDAI</option><option>LOAN BANK</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select class="form-select" id="fStatus">
+              <option>TERSEDIA</option><option>DITEMPAH</option><option>TERJUAL</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Warna</label>
+            <input class="form-input" id="fWarna" placeholder="PUTIH">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Jarak Tempuh</label>
+            <input class="form-input" id="fJarak" placeholder="40,000 km">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">URL Gambar (optional)</label>
+          <input class="form-input" id="fImg" placeholder="https://...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Penerangan</label>
+          <textarea class="form-textarea" id="fDesc" placeholder="Keterangan tambahan tentang kereta..."></textarea>
+        </div>
+        <button class="form-btn" onclick="tambah()">➕ TAMBAH KE INVENTORI</button>
+      </div>
+
+      <div class="tab-content" id="tab-senarai">
+        <div id="carList"></div>
+        <button class="form-btn red" onclick="padamSemua()">🗑️ PADAM SEMUA KERETA</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-ov" id="modal" onclick="closeBg(event)">
+  <div class="modal-box">
+    <div class="mhead">
+      <h3 class="mtitle">Butiran Kereta</h3>
+      <button class="mclose" onclick="closeModal()">✕</button>
+    </div>
+    <div class="mbody">
+      <div class="mimg" id="mImg">🚗</div>
+      <div class="mbrand" id="mBrand"></div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:8px" id="mTitle"></h3>
+      <div class="mprice" id="mPrice"></div>
+      <div class="mdetails" id="mDets"></div>
+      <p class="mdesc" id="mDesc"></p>
+      <a id="mWa" href="#" target="_blank" class="wabtn">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        TANYA VIA WHATSAPP
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="admin-panel" id="editPanel" onclick="closeBgEdit(event)">
+  <div class="admin-box">
+    <div class="admin-head">
+      <h3>✏️ Edit Kereta</h3>
+      <button class="mclose" onclick="closeEdit()">✕</button>
+    </div>
+    <div class="admin-body">
+      <input type="hidden" id="eId">
+      <div class="form-group">
+        <label class="form-label">Nama Kereta *</label>
+        <input class="form-input" id="eNama">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Jenama *</label>
+          <select class="form-select" id="eJenama">
+            <option>PERODUA</option><option>PROTON</option><option>TOYOTA</option>
+            <option>HONDA</option><option>NISSAN</option><option>MAZDA</option>
+            <option>MERCEDES</option><option>BMW</option><option>MITSUBISHI</option>
+            <option>HYUNDAI</option><option>KIA</option><option>LAIN-LAIN</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tahun *</label>
+          <input class="form-input" id="eTahun" type="number" min="1990" max="2030">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Harga (RM) *</label>
+          <input class="form-input" id="eHarga">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Anggaran Bulanan</label>
+          <input class="form-input" id="eBulanan">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Jenis Pembiayaan</label>
+          <select class="form-select" id="eJenis">
+            <option>SAMBUNG BAYAR</option><option>LOAN KEDAI</option><option>LOAN BANK</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="eStatus">
+            <option>TERSEDIA</option><option>DITEMPAH</option><option>TERJUAL</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Warna</label>
+          <input class="form-input" id="eWarna">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Jarak Tempuh</label>
+          <input class="form-input" id="eJarak">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">URL Gambar</label>
+        <input class="form-input" id="eImg">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Penerangan</label>
+        <textarea class="form-textarea" id="eDesc"></textarea>
+      </div>
+      <button class="form-btn" onclick="simpanEdit()">💾 SIMPAN PERUBAHAN</button>
+    </div>
+  </div>
+</div>
+
 <script>
-function filterCars(category) {
-  let cards = document.querySelectorAll('.card');
-  cards.forEach(card => {
-    if(category === 'all'){
-      card.style.display = 'block';
-    } else if(card.classList.contains(category)){
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
+const WA = "60179173381";
+const KEY = "aymotor_cars";
+// SHA-256 hash of "Aymotor@179" — password asal tidak disimpan dalam kod
+const ADMIN_HASH = "48f660a712fc49adf737cf210151a6a4c2ab2f2662c042e4a417058779d8df64";
+let cars = [], nextId = 1, activeType = 'all', activeBrand = 'all';
+
+async function hashPw(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+function checkPassword() {
+  document.getElementById('pwInput').value = '';
+  document.getElementById('pwErr').style.display = 'none';
+  document.getElementById('pwModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(()=>document.getElementById('pwInput').focus(), 200);
+}
+async function submitPw() {
+  const val = document.getElementById('pwInput').value;
+  const hashed = await hashPw(val);
+  if (hashed === ADMIN_HASH) { closePwModal(); openAdmin(); }
+  else { document.getElementById('pwErr').style.display='block'; document.getElementById('pwInput').value=''; document.getElementById('pwInput').focus(); }
+}
+function closePwModal() { document.getElementById('pwModal').classList.remove('open'); document.body.style.overflow=''; }
+function closePwBg(e) { if(e.target===document.getElementById('pwModal')) closePwModal(); }
+
+function load() {
+  try { const d = JSON.parse(localStorage.getItem(KEY)||'{}'); cars = d.cars||[]; nextId = d.nextId||1; } catch(e) { cars=[]; }
+}
+function save() { localStorage.setItem(KEY, JSON.stringify({cars, nextId})); }
+
+function updateStats() {
+  document.getElementById('statStock').textContent = cars.filter(c=>c.status==='TERSEDIA').length;
+}
+
+function renderCards() {
+  const grid = document.getElementById('invGrid');
+  grid.innerHTML = '';
+  const list = cars.filter(c=>(activeType==='all'||c.jenis===activeType)&&(activeBrand==='all'||c.jenama===activeBrand));
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty-state"><div>🚗</div><p>Belum ada kereta dalam inventori.<br>Klik ⚙️ di sudut bawah kiri untuk tambah kereta.</p><button onclick="openAdmin()">➕ Tambah Kereta Sekarang</button></div>`;
+    return;
+  }
+  list.forEach(car => {
+    const tc = car.jenis==='SAMBUNG BAYAR'?'bsb':car.jenis==='LOAN KEDAI'?'blk':'blb';
+    const sc = car.status==='TERSEDIA'?'st':car.status==='DITEMPAH'?'sd':'sj';
+    const sold = car.status==='TERJUAL'?`<div class="sold-ov"><div class="sold-txt">S O L D</div></div>`:'';
+    const acts = car.status==='TERJUAL'
+      ?`<button class="cdbtn" onclick="openModal(${car.id})">Lihat Details</button><span class="csold">Sudah Terjual</span>`
+      :`<button class="cdbtn" onclick="openModal(${car.id})">Lihat Details</button><a href="https://wa.me/${WA}?text=Salam%20AY%20Motor,%20saya%20berminat%20dengan%20${encodeURIComponent(car.nama)}%20-%20${car.harga}" target="_blank" class="cwabtn">📱 Tanya</a>`;
+    const imgH = car.img?`<img src="${car.img}" onerror="this.parentElement.innerHTML='<div class=\\'no-img\\'><span>🚗</span><span>Tiada Gambar</span></div>'">`:`<div class="no-img"><span>🚗</span><span>Tiada Gambar</span></div>`;
+    const d = document.createElement('div');
+    d.className = 'car-card';
+    d.innerHTML = `<div class="car-img-wrap">${sold}<div class="card-top"><span class="btype ${tc}">${car.jenis}</span><span class="bstat ${sc}">${car.status}</span></div>${imgH}</div><div class="card-body"><div class="cbrand">${car.jenama}</div><h3 class="cname">${car.nama}</h3><div class="cmeta"><div class="cprice">${car.harga}</div><div class="cyear">Tahun ${car.tahun}</div></div><div class="cactions">${acts}</div></div>`;
+    grid.appendChild(d);
   });
 }
-</script>
-<script>
-const sheetID = "1MqQIntdRW92si2ZsAOQQS0sabgP4hY1cNyK_SB7uj5w";
-const url = `https://opensheet.elk.sh/${sheetID}/AY%20MOTOR%20STOCK`;
-fetch(url)
-.then(res => res.json())
-.then(data => {
-  const container = document.getElementById("car-list");
-  container.innerHTML = "";
 
-  data.forEach(car => {
-    const card = `
-      <div class="car-card">
-        <img src="${car.Gambar}" style="width:100%;border-radius:12px;">
-        <h3>${car.Nama}</h3>
-        <p>${car.Harga}</p>
+function renderCarList() {
+  const el = document.getElementById('carList');
+  if (!cars.length) { el.innerHTML = '<div class="cli-empty">Tiada kereta. Tambah melalui tab Tambah Kereta.</div>'; return; }
+  el.innerHTML = cars.map(c=>`
+    <div class="car-list-item">
+      <div class="cli-info">
+        <div class="cli-name">${c.nama}</div>
+        <div class="cli-sub">${c.jenis} &bull; <span style="color:${c.status==='TERSEDIA'?'#27AE60':c.status==='DITEMPAH'?'var(--orange)':'var(--red)'}">${c.status}</span></div>
       </div>
-    `;
-    container.innerHTML += card;
+      <div class="cli-price">${c.harga}</div>
+      <button class="cli-edit" onclick="bukaEdit(${c.id})">✏️ Edit</button>
+      <button class="cli-del" onclick="padam(${c.id})">Padam</button>
+    </div>`).join('');
+}
+
+function tambah() {
+  const nama = document.getElementById('fNama').value.trim();
+  const tahun = parseInt(document.getElementById('fTahun').value);
+  const hargaRaw = document.getElementById('fHarga').value.trim();
+  if (!nama||!tahun||!hargaRaw) { alert('Sila isi nama, tahun dan harga.'); return; }
+  const harga = hargaRaw.startsWith('RM')?hargaRaw:`RM ${hargaRaw}`;
+  const bRaw = document.getElementById('fBulanan').value.trim();
+  const bulanan = bRaw?(bRaw.startsWith('RM')?bRaw:`RM ${bRaw}`):'';
+  cars.unshift({
+    id: nextId++,
+    nama, tahun, harga, bulanan,
+    jenama: document.getElementById('fJenama').value,
+    jenis:  document.getElementById('fJenis').value,
+    status: document.getElementById('fStatus').value,
+    warna:  document.getElementById('fWarna').value.trim()||'–',
+    jarak:  document.getElementById('fJarak').value.trim()||'–',
+    img:    document.getElementById('fImg').value.trim(),
+    desc:   document.getElementById('fDesc').value.trim()||`${nama} tahun ${tahun}. Hubungi kami untuk maklumat lanjut.`
   });
+  save(); renderCards(); updateStats();
+  ['fNama','fTahun','fHarga','fBulanan','fWarna','fJarak','fImg','fDesc'].forEach(id=>document.getElementById(id).value='');
+  alert(`✅ "${nama}" berjaya ditambah!`);
+}
+
+function padam(id) {
+  const c = cars.find(x=>x.id===id);
+  if (!confirm(`Padam "${c?.nama}"?`)) return;
+  cars = cars.filter(x=>x.id!==id);
+  save(); renderCards(); updateStats(); renderCarList();
+}
+
+function bukaEdit(id) {
+  const c = cars.find(x=>x.id===id); if(!c) return;
+  document.getElementById('eId').value = c.id;
+  document.getElementById('eNama').value = c.nama;
+  document.getElementById('eJenama').value = c.jenama;
+  document.getElementById('eTahun').value = c.tahun;
+  document.getElementById('eHarga').value = c.harga.replace('RM ','');
+  document.getElementById('eBulanan').value = c.bulanan.replace('RM ','');
+  document.getElementById('eJenis').value = c.jenis;
+  document.getElementById('eStatus').value = c.status;
+  document.getElementById('eWarna').value = c.warna === '–' ? '' : c.warna;
+  document.getElementById('eJarak').value = c.jarak === '–' ? '' : c.jarak;
+  document.getElementById('eImg').value = c.img;
+  document.getElementById('eDesc').value = c.desc;
+  document.getElementById('editPanel').classList.add('open');
+}
+
+function simpanEdit() {
+  const id = parseInt(document.getElementById('eId').value);
+  const idx = cars.findIndex(x=>x.id===id); if(idx===-1) return;
+  const nama = document.getElementById('eNama').value.trim();
+  const hargaRaw = document.getElementById('eHarga').value.trim();
+  const tahun = parseInt(document.getElementById('eTahun').value);
+  if (!nama||!hargaRaw||!tahun) { alert('Sila isi nama, tahun dan harga.'); return; }
+  const harga = hargaRaw.startsWith('RM')?hargaRaw:`RM ${hargaRaw}`;
+  const bRaw = document.getElementById('eBulanan').value.trim();
+  const bulanan = bRaw?(bRaw.startsWith('RM')?bRaw:`RM ${bRaw}`):'';
+  cars[idx] = { ...cars[idx], nama, tahun, harga, bulanan,
+    jenama: document.getElementById('eJenama').value,
+    jenis:  document.getElementById('eJenis').value,
+    status: document.getElementById('eStatus').value,
+    warna:  document.getElementById('eWarna').value.trim()||'–',
+    jarak:  document.getElementById('eJarak').value.trim()||'–',
+    img:    document.getElementById('eImg').value.trim(),
+    desc:   document.getElementById('eDesc').value.trim()
+  };
+  save(); renderCards(); updateStats(); renderCarList();
+  closeEdit();
+  alert(`✅ "${nama}" berjaya dikemaskini!`);
+}
+
+function closeEdit() { document.getElementById('editPanel').classList.remove('open'); document.body.style.overflow=''; }
+function closeBgEdit(e) { if(e.target===document.getElementById('editPanel')) closeEdit(); }
+
+function padamSemua() {
+  if (!cars.length) { alert('Tiada kereta untuk dipadam.'); return; }
+  if (!confirm('Padam SEMUA kereta? Tindakan ini tidak boleh dibatalkan.')) return;
+  cars = []; nextId = 1;
+  save(); renderCards(); updateStats(); renderCarList();
+}
+
+function openModal(id) {
+  const c = cars.find(x=>x.id===id); if(!c) return;
+  document.getElementById('mBrand').textContent = c.jenama;
+  document.getElementById('mTitle').textContent = c.nama;
+  document.getElementById('mPrice').textContent = c.harga;
+  document.getElementById('mDesc').textContent = c.desc;
+  document.getElementById('mImg').innerHTML = c.img
+    ?`<img src="${c.img}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='<span style=\\'font-size:64px\\'>🚗</span>'">`
+    :'<span style="font-size:64px">🚗</span>';
+  document.getElementById('mDets').innerHTML = `
+    <div><div class="mdlabel">Tahun</div><div class="mdval">${c.tahun}</div></div>
+    <div><div class="mdlabel">Jenis</div><div class="mdval">${c.jenis}</div></div>
+    <div><div class="mdlabel">Status</div><div class="mdval">${c.status}</div></div>
+    <div><div class="mdlabel">Warna</div><div class="mdval">${c.warna}</div></div>
+    <div><div class="mdlabel">Jarak Tempuh</div><div class="mdval">${c.jarak}</div></div>
+    ${c.bulanan?`<div><div class="mdlabel">Anggaran Bulanan</div><div class="mdval" style="color:var(--gold);font-size:18px">${c.bulanan}</div></div>`:''}`;
+  const wa = document.getElementById('mWa');
+  if (c.status==='TERJUAL'){wa.style.display='none';}
+  else{wa.style.display='flex';wa.href=`https://wa.me/${WA}?text=Salam%20AY%20Motor,%20saya%20berminat%20dengan%20${encodeURIComponent(c.nama)}%20-%20${c.harga}`;}
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+function closeBg(e){if(e.target===document.getElementById('modal'))closeModal();}
+function openAdmin(){renderCarList();document.getElementById('adminPanel').classList.add('open');document.body.style.overflow='hidden';}
+function closeAdmin(){document.getElementById('adminPanel').classList.remove('open');document.body.style.overflow='';}
+function closeBgAdmin(e){if(e.target===document.getElementById('adminPanel'))closeAdmin();}
+function switchTab(n,btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+n).classList.add('active'); btn.classList.add('active');
+  if(n==='senarai') renderCarList();
+}
+function toggleMenu(){document.getElementById('mNav').classList.toggle('open');}
+function closeMenu(){document.getElementById('mNav').classList.remove('open');}
+
+document.getElementById('fType').addEventListener('click',e=>{
+  if(!e.target.matches('[data-type]'))return;
+  document.querySelectorAll('#fType .fbtn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active'); activeType=e.target.dataset.type; renderCards();
 });
+document.getElementById('fBrand').addEventListener('click',e=>{
+  if(!e.target.matches('[data-brand]'))return;
+  document.querySelectorAll('#fBrand .fbtn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active'); activeBrand=e.target.dataset.brand; renderCards();
+});
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeAdmin();closePwModal();closeEdit();}});
+
+load(); updateStats(); renderCards();
+
+document.getElementById('adminBtn').addEventListener('click', checkPassword);
 </script>
 </body>
 </html>
